@@ -10,39 +10,7 @@
     <header>Note Mate</header>
 
     <div class="main-content">
-      <!-- Show Notes Mode-->
-      <ng-container *ngIf="displayMode === 'show'; else add">
-        <input
-          type="text"
-          name="filter"
-          id="filter"
-          placeholder="Filter"
-          [(ngModel)]="filterText"
-          (keyup)="filter()"
-        />
-
-        <ng-container *ngFor="let note of notes; index as i">
-          <app-note
-            *ngIf="note.display"
-            [note]="note"
-            (edit)="editNote($event, i)"
-            (delete)="deleteNote($event)"
-          ></app-note>
-        </ng-container>
-
-        <button class="btn btn--purple" id="add-btn" (click)="showAdd()">
-          + Add
-        </button>
-      </ng-container>
-
-      <!-- Add Notes Mode-->
-      <ng-template #add
-        ><app-add-note
-          [editNote]="selectedNote"
-          (saveNote)="addNote($event)"
-          (cancel)="this.displayMode = 'show'"
-        ></app-add-note>
-      </ng-template>
+      <router-outlet></router-outlet>
     </div>
   </body>
 </html>

@@ -1,10 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-export interface Note {
-  title: string;
-  text: string;
-  display?: boolean;
-}
+import { Note } from './../models/note';
 
 @Component({
   selector: 'app-note',

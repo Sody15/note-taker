@@ -1,0 +1,25 @@
+<div class="dashboard">
+  <input
+    type="text"
+    name="filter"
+    id="filter"
+    placeholder="Filter"
+    [(ngModel)]="filterText"
+    (keyup)="filterNotes()"
+  />
+
+  <div class="note-container">
+    <ng-container *ngFor="let note of notes; index as i">
+      <app-note
+        *ngIf="note.display"
+        [note]="note"
+        (edit)="editNote($event, i)"
+        (delete)="deleteNote($event)"
+      ></app-note>
+    </ng-container>
+  </div>
+
+  <button class="btn btn--purple" id="add-btn" (click)="addNote()">
+    + Add
+  </button>
+</div>

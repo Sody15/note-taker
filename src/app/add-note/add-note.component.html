@@ -14,7 +14,7 @@
     ></textarea>
   </div>
   <div class="btn-row">
-    <button class="btn cancel-btn" type="button" (click)="cancel.emit(null)">
+    <button class="btn cancel-btn" type="button" [routerLink]="['/dashboard']">
       Cancel
     </button>
     <button class="btn btn--green" type="submit" [disabled]="!form.valid">

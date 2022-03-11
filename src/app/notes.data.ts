@@ -1,4 +1,4 @@
-import { Note } from './note/note.component';
+import { Note } from './models/note';
 
 export const notesData: Note[] = [
   {

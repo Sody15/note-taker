@@ -1,6 +1,9 @@
-import { Note } from './../note/note.component';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NotesService } from '../notes.service';
+
+import { Note } from './../models/note';
 
 @Component({
   selector: 'app-add-note',
@@ -10,13 +13,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddNoteComponent implements OnInit {
   form!: FormGroup;
 
-  @Input() editNote: Note | undefined;
-  @Output() saveNote = new EventEmitter<Note>();
-  @Output() cancel = new EventEmitter<null>();
+  editNote?: Note;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private notesService: NotesService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.editNote = this.notesService.selectedNote;
+    this.formInit();
+  }
+
+  formInit() {
     if (this.editNote) {
       this.form = this.fb.group({
         title: [this.editNote.title, Validators.required],
@@ -32,7 +42,12 @@ export class AddNoteComponent implements OnInit {
 
   save(f: FormGroup) {
     if (f.valid) {
-      this.saveNote.emit({ title: f.value.title, text: f.value.text });
+      this.notesService.addNote({
+        title: f.value.title,
+        text: f.value.text,
+        display: true,
+      });
+      this.router.navigateByUrl('/dashboard');
     }
   }
 }
