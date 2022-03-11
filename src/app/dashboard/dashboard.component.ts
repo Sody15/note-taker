@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
+
 import { Router } from '@angular/router';
 import { NotesService } from '../notes.service';
 
@@ -8,6 +10,57 @@ import { Note } from './../models/note';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  animations: [
+    trigger('popAnimation', [
+      transition(':enter', [
+        style({
+          height: 0,
+          opacity: 0,
+          transform: 'scale(0.85)',
+          'margin-bottom': 0,
+          paddingTop: 0,
+          paddingBottom: 0,
+          paddingRight: 0,
+          paddingLeft: 0,
+        }),
+        animate(
+          '50ms',
+          style({
+            height: '*',
+            'margin-bottom': '*',
+            paddingTop: '*',
+            paddingBottom: '*',
+            paddingRight: '*',
+            paddingLeft: '*',
+          })
+        ),
+        animate(200),
+      ]),
+      transition(':leave', [
+        animate(50, style({ transform: 'scale(1.05)' })),
+        animate(50, style({ tranform: 'scale(1)', opacity: 0.75 })),
+        animate(
+          '120ms ease-out',
+          style({
+            transform: 'scale(0.68)',
+            opacity: 0,
+          })
+        ),
+        animate(
+          '150ms ease-out',
+          style({
+            height: 0,
+            opacity: 0,
+            'margin-bottom': 0,
+            paddingTop: 0,
+            paddingBottom: 0,
+            paddingRight: 0,
+            paddingLeft: 0,
+          })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class DashboardComponent implements OnInit {
   filterText: string = '';
