@@ -1,0 +1,16 @@
+<div
+  class="note"
+  (mouseenter)="showDelete = true"
+  (mouseleave)="showDelete = false"
+  (click)="edit.emit(note)"
+>
+  <span
+    *ngIf="showDelete"
+    class="delete-btn"
+    (click)="delete.emit(this.note)"
+  ></span>
+  <h1 class="note__title">{{ note?.title }}</h1>
+  <div class="note__body">
+    <p>{{ note?.text }}</p>
+  </div>
+</div>

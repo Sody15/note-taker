@@ -1,0 +1,24 @@
+<form class="add-note" [formGroup]="form" (ngSubmit)="save(form)">
+  <div class="row">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" formControlName="title" />
+  </div>
+  <div class="row">
+    <label for="body">Body</label>
+    <textarea
+      name="body"
+      id="body"
+      cols="30"
+      rows="10"
+      formControlName="text"
+    ></textarea>
+  </div>
+  <div class="btn-row">
+    <button class="btn cancel-btn" type="button" (click)="cancel.emit(null)">
+      Cancel
+    </button>
+    <button class="btn btn--green" type="submit" [disabled]="!form.valid">
+      Save
+    </button>
+  </div>
+</form>

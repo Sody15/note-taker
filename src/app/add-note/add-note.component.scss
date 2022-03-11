@@ -1,0 +1,20 @@
+.add-note {
+  .row {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    display: block;
+    color: black;
+    margin-bottom: 0.7rem;
+  }
+  .btn-row {
+    text-align: end;
+    .cancel-btn {
+      margin-right: 1rem;
+    }
+  }
+}
