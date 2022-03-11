@@ -1,5 +1,19 @@
+@import "../styles/base/mixins";
+
 .main-content {
   height: 80vh;
-  width: 40%;
   margin: auto;
+
+  @include respond(ultra-wide) {
+    width: 20%;
+  }
+  @include respond(desktop) {
+    width: 40%;
+  }
+  @include respond(tab-land) {
+    width: 60%;
+  }
+  @include respond(phone) {
+    width: 90%;
+  }
 }
